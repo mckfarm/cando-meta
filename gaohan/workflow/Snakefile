@@ -1,0 +1,21 @@
+# The main entry point of your workflow.
+# After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
+import itertools
+import os 
+import glob
+import sys
+import pandas as pd
+
+configfile: "config/config.yaml"
+
+include: "rules/common.smk"
+include: "rules/fastp.smk"
+include: "rules/fastqc.smk"
+
+rule all:
+    input:
+        get_rules
+
+# Make report for snakemake. 
+
+report: "/workflow/report/workflow.rst"

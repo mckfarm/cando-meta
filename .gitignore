@@ -1,0 +1,7 @@
+# directories
+gaohan/raw_reads/*
+gaohan/results/*
+
+# file types
+*.fastq.gz
+*.out

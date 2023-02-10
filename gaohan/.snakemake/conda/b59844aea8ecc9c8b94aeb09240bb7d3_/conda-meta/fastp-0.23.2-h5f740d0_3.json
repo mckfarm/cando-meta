@@ -1,0 +1,46 @@
+{
+  "build": "h5f740d0_3",
+  "build_number": 3,
+  "channel": "https://conda.anaconda.org/bioconda/linux-64",
+  "constrains": [],
+  "depends": [
+    "isa-l",
+    "libdeflate >=1.13,<1.14.0a0",
+    "libgcc-ng >=12",
+    "libstdcxx-ng >=12"
+  ],
+  "extracted_package_dir": "/home/mmf8608/.conda/pkgs/fastp-0.23.2-h5f740d0_3",
+  "features": "",
+  "files": [
+    "bin/fastp"
+  ],
+  "fn": "fastp-0.23.2-h5f740d0_3.tar.bz2",
+  "license": "MIT",
+  "link": {
+    "source": "/home/mmf8608/.conda/pkgs/fastp-0.23.2-h5f740d0_3",
+    "type": 1
+  },
+  "md5": "001589355bded3e913b0c7740d39ac10",
+  "name": "fastp",
+  "package_tarball_full_path": "/home/mmf8608/.conda/pkgs/fastp-0.23.2-h5f740d0_3.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "bin/fastp",
+        "path_type": "hardlink",
+        "sha256": "ec9d01e67c793811db18041694fbce65091ac31395b3a69ee0f64231a65b8b96",
+        "sha256_in_prefix": "ec9d01e67c793811db18041694fbce65091ac31395b3a69ee0f64231a65b8b96",
+        "size_in_bytes": 11635088
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "fastp=0.23.2",
+  "sha256": "96955ac4ae2596f5ba7890c700b9576b2aae745aca7ba2245ccf98c2ae1c34be",
+  "size": 3334114,
+  "subdir": "linux-64",
+  "timestamp": 1663225469000,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/bioconda/linux-64/fastp-0.23.2-h5f740d0_3.tar.bz2",
+  "version": "0.23.2"
+}

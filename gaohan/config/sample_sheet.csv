@@ -1,0 +1,6 @@
+accession,date,sample_name,forward,reverse
+SRR5576001,Nov_13,gao1,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_1.fastq.gz,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_2.fastq.gz
+SRR5576002,Aug_07,gao2,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_1.fastq.gz,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_2.fastq.gz
+SRR5576003,May_19,gao3,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_1.fastq.gz,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_2.fastq.gz
+SRR5576004,Oct_15,gao4,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_1.fastq.gz,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_2.fastq.gz
+SRR5576005,Sep_17,gao5,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_1.fastq.gz,/projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_2.fastq.gz

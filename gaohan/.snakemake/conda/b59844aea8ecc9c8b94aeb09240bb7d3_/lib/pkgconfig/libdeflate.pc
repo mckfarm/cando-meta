@@ -1,0 +1,10 @@
+prefix=/projects/b1052/mckenna/cando-meta/gaohan/.snakemake/conda/b59844aea8ecc9c8b94aeb09240bb7d3_
+exec_prefix=${prefix}
+includedir=/projects/b1052/mckenna/cando-meta/gaohan/.snakemake/conda/b59844aea8ecc9c8b94aeb09240bb7d3_/include
+libdir=/projects/b1052/mckenna/cando-meta/gaohan/.snakemake/conda/b59844aea8ecc9c8b94aeb09240bb7d3_/lib
+
+Name: libdeflate
+Description: Fast implementation of DEFLATE, zlib, and gzip
+Version: 1.13
+Libs: -L${libdir} -ldeflate
+Cflags: -I${includedir}
