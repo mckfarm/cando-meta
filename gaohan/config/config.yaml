@@ -5,5 +5,7 @@ sample_sheet: "config/sample_sheet.csv"
 # rule execution list 
 # this goes into the get_rules function laid out in the common.smk file
 
-FASTP: True
-FASTQC: True
+FASTP: False
+FASTQC: False
+NONPAREIL: True
+

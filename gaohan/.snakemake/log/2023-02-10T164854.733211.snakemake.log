@@ -1,0 +1,33 @@
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cluster nodes: 10
+Job stats:
+job            count    min threads    max threads
+-----------  -------  -------------  -------------
+all                1              1              1
+fastqc_filt        4              1              1
+fastqc_raw         5              1              1
+nonpareil          5              1              1
+total             15              1              1
+
+Select jobs to execute...
+
+[Fri Feb 10 16:48:57 2023]
+rule nonpareil:
+    input: results/fastp_out/gao2/gao2.fastp.r1.fastq.gz, results/fastp_out/gao2/gao2.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao2/gao2.r1.npo, results/nonpareil_out/gao2/gao2.r2.npo
+    jobid: 17
+    reason: Missing output files: results/nonpareil_out/gao2/gao2.r1.npo, results/nonpareil_out/gao2/gao2.r2.npo
+    wildcards: sample=gao2
+    resources: mem_mb=20000, mem_mib=15076, disk_mb=15808, disk_mib=15076, tmpdir=<TBD>, account=p31629, partition=normal, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao2/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 2
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 2
+        
+RuleException in rule nonpareil in file /projects/b1052/mckenna/cando-meta/gaohan/workflow/rules/nonpareil.smk, line 1:
+AttributeError: 'Resources' object has no attribute 'nodes', when formatting the following:
+mkdir -p logs/{rule} && sbatch --account={resources.account} --partition={resources.partition} --nodes={resources.nodes} --ntasks={threads} --mem={resources.mem} --time={resources.time} --job-name={rule}-{wildcards} --output=logs/{rule}/smk-{rule}-{wildcards}-{jobid}.out

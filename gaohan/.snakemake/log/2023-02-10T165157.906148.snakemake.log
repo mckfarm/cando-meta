@@ -1,0 +1,416 @@
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cluster nodes: 10
+Job stats:
+job            count    min threads    max threads
+-----------  -------  -------------  -------------
+all                1              1              1
+fastqc_filt        4              1              1
+fastqc_raw         5              1              1
+nonpareil          5              1              1
+total             15              1              1
+
+Select jobs to execute...
+
+[Fri Feb 10 16:51:59 2023]
+rule nonpareil:
+    input: results/fastp_out/gao2/gao2.fastp.r1.fastq.gz, results/fastp_out/gao2/gao2.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao2/gao2.r1.npo, results/nonpareil_out/gao2/gao2.r2.npo
+    jobid: 17
+    reason: Missing output files: results/nonpareil_out/gao2/gao2.r2.npo, results/nonpareil_out/gao2/gao2.r1.npo
+    wildcards: sample=gao2
+    resources: mem_mb=20000, mem_mib=15076, disk_mb=15808, disk_mib=15076, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao2/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 2
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 2
+        
+Submitted job 17 with external jobid 'Submitted batch job 2738786'.
+
+[Fri Feb 10 16:52:02 2023]
+rule nonpareil:
+    input: results/fastp_out/gao4/gao4.fastp.r1.fastq.gz, results/fastp_out/gao4/gao4.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao4/gao4.r1.npo, results/nonpareil_out/gao4/gao4.r2.npo
+    jobid: 19
+    reason: Missing output files: results/nonpareil_out/gao4/gao4.r2.npo, results/nonpareil_out/gao4/gao4.r1.npo
+    wildcards: sample=gao4
+    resources: mem_mb=20000, mem_mib=20714, disk_mb=21720, disk_mib=20714, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao4/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao4/gao4.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao4/ -t 2
+        nonpareil -s results/fastp_out/gao4/gao4.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao4/ -t 2
+        
+Submitted job 19 with external jobid 'Submitted batch job 2738789'.
+
+[Fri Feb 10 16:52:07 2023]
+rule fastqc_filt:
+    input: results/fastp_out/gao4/gao4.fastp.r1.fastq.gz, results/fastp_out/gao4/gao4.fastp.r2.fastq.gz
+    output: results/fastqc_out/fastp_qc/gao4/gao4.fastp.r1_fastqc.html, results/fastqc_out/fastp_qc/gao4/gao4.fastp.r2_fastqc.html
+    jobid: 12
+    reason: Missing output files: results/fastqc_out/fastp_qc/gao4/gao4.fastp.r2_fastqc.html, results/fastqc_out/fastp_qc/gao4/gao4.fastp.r1_fastqc.html
+    wildcards: sample=gao4
+    resources: mem_mb=5000, mem_mib=20714, disk_mb=21720, disk_mib=20714, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/fastp_qc/gao4
+        module load fastqc/0.11.5
+        fastqc -t 1 results/fastp_out/gao4/gao4.fastp.r1.fastq.gz results/fastp_out/gao4/gao4.fastp.r2.fastq.gz --outdir results/fastqc_out/fastp_qc/gao4
+        
+Submitted job 12 with external jobid 'Submitted batch job 2738792'.
+
+[Fri Feb 10 16:52:10 2023]
+rule fastqc_raw:
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao2/gao2.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao2/gao2.fastp.r2_fastqc.html
+    jobid: 2
+    reason: Missing output files: results/fastqc_out/raw_qc/gao2/gao2.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao2/gao2.fastp.r2_fastqc.html
+    wildcards: sample=gao2
+    resources: mem_mb=5000, mem_mib=16329, disk_mb=17122, disk_mib=16329, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/raw_qc/gao2
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao2
+        
+Submitted job 2 with external jobid 'Submitted batch job 2738797'.
+
+[Fri Feb 10 16:52:11 2023]
+rule fastqc_raw:
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao4/gao4.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao4/gao4.fastp.r2_fastqc.html
+    jobid: 4
+    reason: Missing output files: results/fastqc_out/raw_qc/gao4/gao4.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao4/gao4.fastp.r2_fastqc.html
+    wildcards: sample=gao4
+    resources: mem_mb=5000, mem_mib=22317, disk_mb=23401, disk_mib=22317, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/raw_qc/gao4
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao4
+        
+Submitted job 4 with external jobid 'Submitted batch job 2738801'.
+
+[Fri Feb 10 16:52:11 2023]
+rule fastqc_raw:
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao1/gao1.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao1/gao1.fastp.r2_fastqc.html
+    jobid: 1
+    reason: Missing output files: results/fastqc_out/raw_qc/gao1/gao1.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao1/gao1.fastp.r2_fastqc.html
+    wildcards: sample=gao1
+    resources: mem_mb=5000, mem_mib=15731, disk_mb=16495, disk_mib=15731, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/raw_qc/gao1
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao1
+        
+Submitted job 1 with external jobid 'Submitted batch job 2738805'.
+
+[Fri Feb 10 16:52:11 2023]
+rule nonpareil:
+    input: results/fastp_out/gao5/gao5.fastp.r1.fastq.gz, results/fastp_out/gao5/gao5.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao5/gao5.r1.npo, results/nonpareil_out/gao5/gao5.r2.npo
+    jobid: 20
+    reason: Missing output files: results/nonpareil_out/gao5/gao5.r2.npo, results/nonpareil_out/gao5/gao5.r1.npo
+    wildcards: sample=gao5
+    resources: mem_mb=20000, mem_mib=19282, disk_mb=20218, disk_mib=19282, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao5/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao5/gao5.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao5/ -t 2
+        nonpareil -s results/fastp_out/gao5/gao5.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao5/ -t 2
+        
+Submitted job 20 with external jobid 'Submitted batch job 2738809'.
+
+[Fri Feb 10 16:52:11 2023]
+rule fastqc_filt:
+    input: results/fastp_out/gao5/gao5.fastp.r1.fastq.gz, results/fastp_out/gao5/gao5.fastp.r2.fastq.gz
+    output: results/fastqc_out/fastp_qc/gao5/gao5.fastp.r1_fastqc.html, results/fastqc_out/fastp_qc/gao5/gao5.fastp.r2_fastqc.html
+    jobid: 14
+    reason: Missing output files: results/fastqc_out/fastp_qc/gao5/gao5.fastp.r1_fastqc.html, results/fastqc_out/fastp_qc/gao5/gao5.fastp.r2_fastqc.html
+    wildcards: sample=gao5
+    resources: mem_mb=5000, mem_mib=19282, disk_mb=20218, disk_mib=19282, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/fastp_qc/gao5
+        module load fastqc/0.11.5
+        fastqc -t 1 results/fastp_out/gao5/gao5.fastp.r1.fastq.gz results/fastp_out/gao5/gao5.fastp.r2.fastq.gz --outdir results/fastqc_out/fastp_qc/gao5
+        
+Submitted job 14 with external jobid 'Submitted batch job 2738812'.
+
+[Fri Feb 10 16:52:11 2023]
+rule fastqc_raw:
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao5/gao5.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao5/gao5.fastp.r2_fastqc.html
+    jobid: 5
+    reason: Missing output files: results/fastqc_out/raw_qc/gao5/gao5.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao5/gao5.fastp.r2_fastqc.html
+    wildcards: sample=gao5
+    resources: mem_mb=5000, mem_mib=20703, disk_mb=21708, disk_mib=20703, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/raw_qc/gao5
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao5
+        
+Submitted job 5 with external jobid 'Submitted batch job 2738815'.
+
+[Fri Feb 10 16:52:11 2023]
+rule fastqc_filt:
+    input: results/fastp_out/gao2/gao2.fastp.r1.fastq.gz, results/fastp_out/gao2/gao2.fastp.r2.fastq.gz
+    output: results/fastqc_out/fastp_qc/gao2/gao2.fastp.r1_fastqc.html, results/fastqc_out/fastp_qc/gao2/gao2.fastp.r2_fastqc.html
+    jobid: 8
+    reason: Missing output files: results/fastqc_out/fastp_qc/gao2/gao2.fastp.r2_fastqc.html, results/fastqc_out/fastp_qc/gao2/gao2.fastp.r1_fastqc.html
+    wildcards: sample=gao2
+    resources: mem_mb=5000, mem_mib=15076, disk_mb=15808, disk_mib=15076, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/fastp_qc/gao2
+        module load fastqc/0.11.5
+        fastqc -t 1 results/fastp_out/gao2/gao2.fastp.r1.fastq.gz results/fastp_out/gao2/gao2.fastp.r2.fastq.gz --outdir results/fastqc_out/fastp_qc/gao2
+        
+Submitted job 8 with external jobid 'Submitted batch job 2738818'.
+[Fri Feb 10 16:52:59 2023]
+Error in rule nonpareil:
+    jobid: 19
+    input: results/fastp_out/gao4/gao4.fastp.r1.fastq.gz, results/fastp_out/gao4/gao4.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao4/gao4.r1.npo, results/nonpareil_out/gao4/gao4.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao4/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao4/gao4.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao4/ -t 2
+        nonpareil -s results/fastp_out/gao4/gao4.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao4/ -t 2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2738789
+
+Error executing rule nonpareil on cluster (jobid: 19, external: Submitted batch job 2738789, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.nonpareil.19.sh). For error details see the cluster log and the log files of the involved rule(s).
+Select jobs to execute...
+
+[Fri Feb 10 16:52:59 2023]
+rule fastqc_filt:
+    input: results/fastp_out/gao1/gao1.fastp.r1.fastq.gz, results/fastp_out/gao1/gao1.fastp.r2.fastq.gz
+    output: results/fastqc_out/fastp_qc/gao1/gao1.fastp.r1_fastqc.html, results/fastqc_out/fastp_qc/gao1/gao1.fastp.r2_fastqc.html
+    jobid: 6
+    reason: Missing output files: results/fastqc_out/fastp_qc/gao1/gao1.fastp.r2_fastqc.html, results/fastqc_out/fastp_qc/gao1/gao1.fastp.r1_fastqc.html
+    wildcards: sample=gao1
+    resources: mem_mb=5000, mem_mib=14401, disk_mb=15100, disk_mib=14401, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/fastp_qc/gao1
+        module load fastqc/0.11.5
+        fastqc -t 1 results/fastp_out/gao1/gao1.fastp.r1.fastq.gz results/fastp_out/gao1/gao1.fastp.r2.fastq.gz --outdir results/fastqc_out/fastp_qc/gao1
+        
+Submitted job 6 with external jobid 'Submitted batch job 2739621'.
+[Fri Feb 10 16:53:18 2023]
+Error in rule nonpareil:
+    jobid: 17
+    input: results/fastp_out/gao2/gao2.fastp.r1.fastq.gz, results/fastp_out/gao2/gao2.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao2/gao2.r1.npo, results/nonpareil_out/gao2/gao2.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao2/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 2
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2738786
+
+Error executing rule nonpareil on cluster (jobid: 17, external: Submitted batch job 2738786, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.nonpareil.17.sh). For error details see the cluster log and the log files of the involved rule(s).
+Select jobs to execute...
+
+[Fri Feb 10 16:53:18 2023]
+rule nonpareil:
+    input: results/fastp_out/gao1/gao1.fastp.r1.fastq.gz, results/fastp_out/gao1/gao1.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao1/gao1.r1.npo, results/nonpareil_out/gao1/gao1.r2.npo
+    jobid: 16
+    reason: Missing output files: results/nonpareil_out/gao1/gao1.r1.npo, results/nonpareil_out/gao1/gao1.r2.npo
+    wildcards: sample=gao1
+    resources: mem_mb=20000, mem_mib=14401, disk_mb=15100, disk_mib=14401, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao1/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao1/gao1.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao1/ -t 2
+        nonpareil -s results/fastp_out/gao1/gao1.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao1/ -t 2
+        
+Submitted job 16 with external jobid 'Submitted batch job 2739631'.
+[Fri Feb 10 16:53:23 2023]
+Error in rule nonpareil:
+    jobid: 20
+    input: results/fastp_out/gao5/gao5.fastp.r1.fastq.gz, results/fastp_out/gao5/gao5.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao5/gao5.r1.npo, results/nonpareil_out/gao5/gao5.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao5/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao5/gao5.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao5/ -t 2
+        nonpareil -s results/fastp_out/gao5/gao5.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao5/ -t 2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2738809
+
+Error executing rule nonpareil on cluster (jobid: 20, external: Submitted batch job 2738809, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.nonpareil.20.sh). For error details see the cluster log and the log files of the involved rule(s).
+Select jobs to execute...
+
+[Fri Feb 10 16:53:23 2023]
+rule fastqc_raw:
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao3/gao3.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao3/gao3.fastp.r2_fastqc.html
+    jobid: 3
+    reason: Missing output files: results/fastqc_out/raw_qc/gao3/gao3.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao3/gao3.fastp.r2_fastqc.html
+    wildcards: sample=gao3
+    resources: mem_mb=5000, mem_mib=3795, disk_mb=3979, disk_mib=3795, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=5G, time=05:00:00
+
+
+        mkdir -p results/fastqc_out/raw_qc/gao3
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao3
+        
+Submitted job 3 with external jobid 'Submitted batch job 2739637'.
+[Fri Feb 10 16:54:14 2023]
+Error in rule nonpareil:
+    jobid: 16
+    input: results/fastp_out/gao1/gao1.fastp.r1.fastq.gz, results/fastp_out/gao1/gao1.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao1/gao1.r1.npo, results/nonpareil_out/gao1/gao1.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao1/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao1/gao1.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao1/ -t 2
+        nonpareil -s results/fastp_out/gao1/gao1.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao1/ -t 2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2739631
+
+Error executing rule nonpareil on cluster (jobid: 16, external: Submitted batch job 2739631, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.nonpareil.16.sh). For error details see the cluster log and the log files of the involved rule(s).
+Select jobs to execute...
+
+[Fri Feb 10 16:54:14 2023]
+rule nonpareil:
+    input: results/fastp_out/gao3/gao3.fastp.r1.fastq.gz, results/fastp_out/gao3/gao3.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao3/gao3.r1.npo, results/nonpareil_out/gao3/gao3.r2.npo
+    jobid: 18
+    reason: Missing output files: results/nonpareil_out/gao3/gao3.r1.npo, results/nonpareil_out/gao3/gao3.r2.npo
+    wildcards: sample=gao3
+    resources: mem_mb=20000, mem_mib=3574, disk_mb=3747, disk_mib=3574, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao3/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao3/gao3.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao3/ -t 2
+        nonpareil -s results/fastp_out/gao3/gao3.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao3/ -t 2
+        
+Submitted job 18 with external jobid 'Submitted batch job 2739683'.
+[Fri Feb 10 16:55:11 2023]
+Error in rule nonpareil:
+    jobid: 18
+    input: results/fastp_out/gao3/gao3.fastp.r1.fastq.gz, results/fastp_out/gao3/gao3.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao3/gao3.r1.npo, results/nonpareil_out/gao3/gao3.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao3/
+        module load nonpareil/3.4.1
+        nonpareil -s results/fastp_out/gao3/gao3.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao3/ -t 2
+        nonpareil -s results/fastp_out/gao3/gao3.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao3/ -t 2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2739683
+
+Error executing rule nonpareil on cluster (jobid: 18, external: Submitted batch job 2739683, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.nonpareil.18.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 16:58:56 2023]
+Error in rule fastqc_raw:
+    jobid: 3
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao3/gao3.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao3/gao3.fastp.r2_fastqc.html
+    shell:
+        
+        mkdir -p results/fastqc_out/raw_qc/gao3
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576003_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao3
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2739637
+
+Error executing rule fastqc_raw on cluster (jobid: 3, external: Submitted batch job 2739637, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.fastqc_raw.3.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 17:08:18 2023]
+Finished job 8.
+1 of 15 steps (7%) done
+[Fri Feb 10 17:08:28 2023]
+Finished job 6.
+2 of 15 steps (13%) done
+[Fri Feb 10 17:11:15 2023]
+Error in rule fastqc_raw:
+    jobid: 2
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao2/gao2.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao2/gao2.fastp.r2_fastqc.html
+    shell:
+        
+        mkdir -p results/fastqc_out/raw_qc/gao2
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576002_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao2
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2738797
+
+Error executing rule fastqc_raw on cluster (jobid: 2, external: Submitted batch job 2738797, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.fastqc_raw.2.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 17:11:59 2023]
+Error in rule fastqc_raw:
+    jobid: 1
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao1/gao1.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao1/gao1.fastp.r2_fastqc.html
+    shell:
+        
+        mkdir -p results/fastqc_out/raw_qc/gao1
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576001_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2738805
+
+Error executing rule fastqc_raw on cluster (jobid: 1, external: Submitted batch job 2738805, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.fastqc_raw.1.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 17:14:48 2023]
+Finished job 12.
+3 of 15 steps (20%) done
+[Fri Feb 10 17:14:50 2023]
+Finished job 14.
+4 of 15 steps (27%) done
+[Fri Feb 10 17:17:36 2023]
+Error in rule fastqc_raw:
+    jobid: 5
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao5/gao5.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao5/gao5.fastp.r2_fastqc.html
+    shell:
+        
+        mkdir -p results/fastqc_out/raw_qc/gao5
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576005_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao5
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2738815
+
+Error executing rule fastqc_raw on cluster (jobid: 5, external: Submitted batch job 2738815, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.fastqc_raw.5.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 17:19:16 2023]
+Error in rule fastqc_raw:
+    jobid: 4
+    input: /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_1.fastq.gz, /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_2.fastq.gz
+    output: results/fastqc_out/raw_qc/gao4/gao4.fastp.r1_fastqc.html, results/fastqc_out/raw_qc/gao4/gao4.fastp.r2_fastqc.html
+    shell:
+        
+        mkdir -p results/fastqc_out/raw_qc/gao4
+        module load fastqc/0.11.5
+        fastqc -t 1 /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_1.fastq.gz /projects/b1052/mckenna/cando-meta/gaohan/raw_reads/SRR5576004_2.fastq.gz --outdir results/fastqc_out/raw_qc/gao4
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2738801
+
+Error executing rule fastqc_raw on cluster (jobid: 4, external: Submitted batch job 2738801, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.f2ul3t3o/snakejob.fastqc_raw.4.sh). For error details see the cluster log and the log files of the involved rule(s).
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2023-02-10T165157.906148.snakemake.log

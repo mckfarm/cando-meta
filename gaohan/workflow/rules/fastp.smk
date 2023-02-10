@@ -16,7 +16,7 @@ rule fastp_pe:
         "../envs/fastp.yaml"
     threads: 12
     resources:
-        mem="20G"
+        mem="50G"
     shell: 
         """
         fastp -i {input.r1} \
