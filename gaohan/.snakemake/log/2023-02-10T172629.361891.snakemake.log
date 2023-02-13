@@ -1,0 +1,219 @@
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cluster nodes: 10
+Job stats:
+job          count    min threads    max threads
+---------  -------  -------------  -------------
+all              1              1              1
+nonpareil        5              1              1
+total            6              1              1
+
+Select jobs to execute...
+
+[Fri Feb 10 17:26:37 2023]
+rule nonpareil:
+    input: results/fastp_out/gao2/gao2.fastp.r1.fastq.gz, results/fastp_out/gao2/gao2.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao2/gao2.tmp, results/nonpareil_out/gao2/gao2.r1.npo, results/nonpareil_out/gao2/gao2.r2.npo
+    jobid: 3
+    reason: Missing output files: results/nonpareil_out/gao2/gao2.r2.npo, results/nonpareil_out/gao2/gao2.r1.npo
+    wildcards: sample=gao2
+    resources: mem_mb=20000, mem_mib=15076, disk_mb=15808, disk_mib=15076, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao2/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao2/gao2.fastp.r1.fastq.gz > results/nonpareil_out/gao2/gao2.tmp
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 1
+
+        gunzip -c results/fastp_out/gao2/gao2.fastp.r2.fastq.gz > results/nonpareil_out/gao2/gao2.tmp
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 1
+        
+Submitted job 3 with external jobid 'Submitted batch job 2740672'.
+
+[Fri Feb 10 17:26:38 2023]
+rule nonpareil:
+    input: results/fastp_out/gao1/gao1.fastp.r1.fastq.gz, results/fastp_out/gao1/gao1.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao1/gao1.tmp, results/nonpareil_out/gao1/gao1.r1.npo, results/nonpareil_out/gao1/gao1.r2.npo
+    jobid: 1
+    reason: Missing output files: results/nonpareil_out/gao1/gao1.r2.npo, results/nonpareil_out/gao1/gao1.r1.npo
+    wildcards: sample=gao1
+    resources: mem_mb=20000, mem_mib=14401, disk_mb=15100, disk_mib=14401, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao1/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao1/gao1.fastp.r1.fastq.gz > results/nonpareil_out/gao1/gao1.tmp
+        nonpareil -s results/fastp_out/gao1/gao1.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao1/ -t 1
+
+        gunzip -c results/fastp_out/gao1/gao1.fastp.r2.fastq.gz > results/nonpareil_out/gao1/gao1.tmp
+        nonpareil -s results/fastp_out/gao1/gao1.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao1/ -t 1
+        
+Submitted job 1 with external jobid 'Submitted batch job 2740673'.
+
+[Fri Feb 10 17:26:43 2023]
+rule nonpareil:
+    input: results/fastp_out/gao5/gao5.fastp.r1.fastq.gz, results/fastp_out/gao5/gao5.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao5/gao5.tmp, results/nonpareil_out/gao5/gao5.r1.npo, results/nonpareil_out/gao5/gao5.r2.npo
+    jobid: 9
+    reason: Missing output files: results/nonpareil_out/gao5/gao5.r2.npo, results/nonpareil_out/gao5/gao5.r1.npo
+    wildcards: sample=gao5
+    resources: mem_mb=20000, mem_mib=19282, disk_mb=20218, disk_mib=19282, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao5/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao5/gao5.fastp.r1.fastq.gz > results/nonpareil_out/gao5/gao5.tmp
+        nonpareil -s results/fastp_out/gao5/gao5.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao5/ -t 1
+
+        gunzip -c results/fastp_out/gao5/gao5.fastp.r2.fastq.gz > results/nonpareil_out/gao5/gao5.tmp
+        nonpareil -s results/fastp_out/gao5/gao5.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao5/ -t 1
+        
+Submitted job 9 with external jobid 'Submitted batch job 2740674'.
+
+[Fri Feb 10 17:26:43 2023]
+rule nonpareil:
+    input: results/fastp_out/gao4/gao4.fastp.r1.fastq.gz, results/fastp_out/gao4/gao4.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao4/gao4.tmp, results/nonpareil_out/gao4/gao4.r1.npo, results/nonpareil_out/gao4/gao4.r2.npo
+    jobid: 7
+    reason: Missing output files: results/nonpareil_out/gao4/gao4.r1.npo, results/nonpareil_out/gao4/gao4.r2.npo
+    wildcards: sample=gao4
+    resources: mem_mb=20000, mem_mib=20714, disk_mb=21720, disk_mib=20714, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao4/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao4/gao4.fastp.r1.fastq.gz > results/nonpareil_out/gao4/gao4.tmp
+        nonpareil -s results/fastp_out/gao4/gao4.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao4/ -t 1
+
+        gunzip -c results/fastp_out/gao4/gao4.fastp.r2.fastq.gz > results/nonpareil_out/gao4/gao4.tmp
+        nonpareil -s results/fastp_out/gao4/gao4.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao4/ -t 1
+        
+Submitted job 7 with external jobid 'Submitted batch job 2740675'.
+
+[Fri Feb 10 17:26:43 2023]
+rule nonpareil:
+    input: results/fastp_out/gao3/gao3.fastp.r1.fastq.gz, results/fastp_out/gao3/gao3.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao3/gao3.tmp, results/nonpareil_out/gao3/gao3.r1.npo, results/nonpareil_out/gao3/gao3.r2.npo
+    jobid: 5
+    reason: Missing output files: results/nonpareil_out/gao3/gao3.r1.npo, results/nonpareil_out/gao3/gao3.r2.npo
+    wildcards: sample=gao3
+    resources: mem_mb=20000, mem_mib=3574, disk_mb=3747, disk_mib=3574, tmpdir=<TBD>, account=p31629, partition=normal, nodes=1, threads=6, mem=20G, time=05:00:00
+
+
+        mkdir -p results/nonpareil_out/gao3/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao3/gao3.fastp.r1.fastq.gz > results/nonpareil_out/gao3/gao3.tmp
+        nonpareil -s results/fastp_out/gao3/gao3.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao3/ -t 1
+
+        gunzip -c results/fastp_out/gao3/gao3.fastp.r2.fastq.gz > results/nonpareil_out/gao3/gao3.tmp
+        nonpareil -s results/fastp_out/gao3/gao3.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao3/ -t 1
+        
+Submitted job 5 with external jobid 'Submitted batch job 2740676'.
+[Fri Feb 10 17:28:01 2023]
+Error in rule nonpareil:
+    jobid: 5
+    input: results/fastp_out/gao3/gao3.fastp.r1.fastq.gz, results/fastp_out/gao3/gao3.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao3/gao3.tmp, results/nonpareil_out/gao3/gao3.r1.npo, results/nonpareil_out/gao3/gao3.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao3/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao3/gao3.fastp.r1.fastq.gz > results/nonpareil_out/gao3/gao3.tmp
+        nonpareil -s results/fastp_out/gao3/gao3.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao3/ -t 1
+
+        gunzip -c results/fastp_out/gao3/gao3.fastp.r2.fastq.gz > results/nonpareil_out/gao3/gao3.tmp
+        nonpareil -s results/fastp_out/gao3/gao3.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao3/ -t 1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2740676
+
+Error executing rule nonpareil on cluster (jobid: 5, external: Submitted batch job 2740676, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.9x7tsn4z/snakejob.nonpareil.5.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 17:29:16 2023]
+Error in rule nonpareil:
+    jobid: 3
+    input: results/fastp_out/gao2/gao2.fastp.r1.fastq.gz, results/fastp_out/gao2/gao2.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao2/gao2.tmp, results/nonpareil_out/gao2/gao2.r1.npo, results/nonpareil_out/gao2/gao2.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao2/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao2/gao2.fastp.r1.fastq.gz > results/nonpareil_out/gao2/gao2.tmp
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 1
+
+        gunzip -c results/fastp_out/gao2/gao2.fastp.r2.fastq.gz > results/nonpareil_out/gao2/gao2.tmp
+        nonpareil -s results/fastp_out/gao2/gao2.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao2/ -t 1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2740672
+
+Error executing rule nonpareil on cluster (jobid: 3, external: Submitted batch job 2740672, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.9x7tsn4z/snakejob.nonpareil.3.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 17:29:29 2023]
+Error in rule nonpareil:
+    jobid: 1
+    input: results/fastp_out/gao1/gao1.fastp.r1.fastq.gz, results/fastp_out/gao1/gao1.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao1/gao1.tmp, results/nonpareil_out/gao1/gao1.r1.npo, results/nonpareil_out/gao1/gao1.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao1/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao1/gao1.fastp.r1.fastq.gz > results/nonpareil_out/gao1/gao1.tmp
+        nonpareil -s results/fastp_out/gao1/gao1.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao1/ -t 1
+
+        gunzip -c results/fastp_out/gao1/gao1.fastp.r2.fastq.gz > results/nonpareil_out/gao1/gao1.tmp
+        nonpareil -s results/fastp_out/gao1/gao1.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao1/ -t 1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2740673
+
+Error executing rule nonpareil on cluster (jobid: 1, external: Submitted batch job 2740673, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.9x7tsn4z/snakejob.nonpareil.1.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 17:29:53 2023]
+Error in rule nonpareil:
+    jobid: 7
+    input: results/fastp_out/gao4/gao4.fastp.r1.fastq.gz, results/fastp_out/gao4/gao4.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao4/gao4.tmp, results/nonpareil_out/gao4/gao4.r1.npo, results/nonpareil_out/gao4/gao4.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao4/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao4/gao4.fastp.r1.fastq.gz > results/nonpareil_out/gao4/gao4.tmp
+        nonpareil -s results/fastp_out/gao4/gao4.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao4/ -t 1
+
+        gunzip -c results/fastp_out/gao4/gao4.fastp.r2.fastq.gz > results/nonpareil_out/gao4/gao4.tmp
+        nonpareil -s results/fastp_out/gao4/gao4.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao4/ -t 1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2740675
+
+Error executing rule nonpareil on cluster (jobid: 7, external: Submitted batch job 2740675, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.9x7tsn4z/snakejob.nonpareil.7.sh). For error details see the cluster log and the log files of the involved rule(s).
+[Fri Feb 10 17:30:03 2023]
+Error in rule nonpareil:
+    jobid: 9
+    input: results/fastp_out/gao5/gao5.fastp.r1.fastq.gz, results/fastp_out/gao5/gao5.fastp.r2.fastq.gz
+    output: results/nonpareil_out/gao5/gao5.tmp, results/nonpareil_out/gao5/gao5.r1.npo, results/nonpareil_out/gao5/gao5.r2.npo
+    shell:
+        
+        mkdir -p results/nonpareil_out/gao5/
+        module load nonpareil/3.4.1
+
+        gunzip -c results/fastp_out/gao5/gao5.fastp.r1.fastq.gz > results/nonpareil_out/gao5/gao5.tmp
+        nonpareil -s results/fastp_out/gao5/gao5.fastp.r1.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao5/ -t 1
+
+        gunzip -c results/fastp_out/gao5/gao5.fastp.r2.fastq.gz > results/nonpareil_out/gao5/gao5.tmp
+        nonpareil -s results/fastp_out/gao5/gao5.fastp.r2.fastq.gz -T kmer -f fastq -b results/nonpareil_out/gao5/ -t 1
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+    cluster_jobid: Submitted batch job 2740674
+
+Error executing rule nonpareil on cluster (jobid: 9, external: Submitted batch job 2740674, jobscript: /projects/b1052/mckenna/cando-meta/gaohan/.snakemake/tmp.9x7tsn4z/snakejob.nonpareil.9.sh). For error details see the cluster log and the log files of the involved rule(s).
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2023-02-10T172629.361891.snakemake.log

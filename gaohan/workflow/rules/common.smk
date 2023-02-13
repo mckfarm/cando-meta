@@ -23,11 +23,29 @@ def get_rules(wildcards):
 
     if config["FASTQC"]:
         all_rules = all_rules + expand(
-            "results/fastqc_out/raw_qc/{sample}", 
+            "results/fastqc_out/raw_qc/{sample}/{sample}.fastp.r1_fastqc.html", 
             sample=sample_sheet["sample_name"]
         )
         all_rules = all_rules + expand(
-            "results/fastqc_out/fastp_qc/{sample}", 
+            "results/fastqc_out/raw_qc/{sample}/{sample}.fastp.r2_fastqc.html", 
+            sample=sample_sheet["sample_name"]
+        )
+        all_rules = all_rules + expand(
+            "results/fastqc_out/fastp_qc/{sample}/{sample}.fastp.r1_fastqc.html", 
+            sample=sample_sheet["sample_name"]
+        )
+        all_rules = all_rules + expand(
+            "results/fastqc_out/fastp_qc/{sample}/{sample}.fastp.r2_fastqc.html", 
+            sample=sample_sheet["sample_name"]
+        )
+
+    if config["NONPAREIL"]:
+        all_rules = all_rules + expand(
+            "results/nonpareil_out/{sample}/{sample}.r1.npo",
+            sample=sample_sheet["sample_name"]
+        )
+        all_rules = all_rules + expand(
+            "results/nonpareil_out/{sample}/{sample}.r2.npo",
             sample=sample_sheet["sample_name"]
         )
 

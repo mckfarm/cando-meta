@@ -1,0 +1,7 @@
+name: nonpareil
+channels:
+  - defaults
+  - conda-forge
+  - bioconda
+dependencies:
+  - nonpareil=3.4.1-1
