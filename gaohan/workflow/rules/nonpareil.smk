@@ -16,8 +16,8 @@ rule nonpareil:
         module load nonpareil/3.4.1
 
         gunzip -c {input.r1_filtered} > {output.tmp_fastq}
-        nonpareil -s {input.r1_filtered} -T kmer -f fastq -b {params.out_dir} -t 1
+        nonpareil -s {output.tmp_fastq} -T kmer -f fastq -b {params.out_dir} -t 1
 
         gunzip -c {input.r2_filtered} > {output.tmp_fastq}
-        nonpareil -s {input.r2_filtered} -T kmer -f fastq -b {params.out_dir} -t 1
+        nonpareil -s {output.tmp_fastq} -T kmer -f fastq -b {params.out_dir} -t 1
         """
