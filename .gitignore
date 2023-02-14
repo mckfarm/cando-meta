@@ -2,6 +2,7 @@
 gaohan/raw_reads/*
 gaohan/results/*
 gaohan/local-working/*
+gaohan/.snakemake/*
 
 # file types
 *.fastq.gz
