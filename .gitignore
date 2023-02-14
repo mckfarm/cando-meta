@@ -7,4 +7,9 @@ gaohan/.snakemake/*
 # file types
 *.fastq.gz
 *.out
+
+
+# R stuff
 *.Rproj
+.Rproj.user/
+.Rhistory
