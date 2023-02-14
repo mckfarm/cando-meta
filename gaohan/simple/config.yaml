@@ -13,9 +13,9 @@ default-resources:
   - account="p31629"
   - partition="normal"
   - nodes=1
-  - threads=6
-  - mem="5G"
-  - time="05:00:00"
+  - threads=12
+  - mem="200G"
+  - time="10:00:00"
 jobs: 10
 restart-times: 0
 max-jobs-per-second: 15

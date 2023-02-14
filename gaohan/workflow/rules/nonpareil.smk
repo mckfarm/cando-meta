@@ -1,7 +1,7 @@
 rule nonpareil:
     input:
-        r1_filtered = "results/fastp_out/{sample}/{sample}.fastp.r1.fastq.gz",
-        r2_filtered = "results/fastp_out/{sample}/{sample}.fastp.r2.fastq.gz",
+        get_trimmed_r1,
+        get_trimmed_r2,
     output:
         tmp_fastq = temp("results/nonpareil_out/{sample}/{sample}.tmp"),
         pareil_r1 = "results/nonpareil_out/{sample}/{sample}.r1.npo",
