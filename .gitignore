@@ -6,3 +6,4 @@ gaohan/local-working/*
 # file types
 *.fastq.gz
 *.out
+.Rproj.user
