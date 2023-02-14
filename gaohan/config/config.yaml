@@ -7,5 +7,7 @@ sample_sheet: "config/sample_sheet.csv"
 
 FASTP: False
 FASTQC: False
-NONPAREIL: True
+NONPAREIL: False
+SPADES: True
+ASSEMBLYQC: True
 
