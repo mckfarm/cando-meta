@@ -8,6 +8,7 @@ sample_sheet: "config/sample_sheet.csv"
 FASTP: False
 FASTQC: False
 NONPAREIL: False
-SPADES: True
-ASSEMBLYQC: True
-
+SPADES: False
+ASSEMBLYQC: False
+ASSEMBLYPARSE: True
+METABAT: False

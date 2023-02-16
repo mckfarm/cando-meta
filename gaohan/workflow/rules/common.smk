@@ -61,12 +61,33 @@ def get_rules(wildcards):
         )
 
     if config["ASSEMBLYQC"]: 
+        all_rules.append("results/quast_out/spades/report.html")
+
+    if config["ASSEMBLYPARSE"]: 
         all_rules = all_rules + expand(
-            "results/quast_out/spades/{sample}/report.html",
+            "results/spades_parse/{sample}/{sample}.scaffolds.trim.fasta",
             sample=sample_sheet["sample_name"]
         )
 
-        all_rules.append("results/quast_out/multiqc_report.html")
+        all_rules = all_rules + expand(
+            "results/spades_parse/{sample}/{sample}.mapped.sam",
+            sample=sample_sheet["sample_name"]
+        )
+
+        all_rules = all_rules + expand(
+            "results/spades_parse/{sample}/{sample}.stats.txt",
+            sample=sample_sheet["sample_name"]
+        )
+
+        all_rules = all_rules + expand(
+            "results/spades_parse/{sample}/{sample}.hist.txt",
+            sample=sample_sheet["sample_name"]
+        )
+
+        all_rules = all_rules + expand(
+            "results/spades_parse/{sample}/{sample}.sorted.bam",
+            sample=sample_sheet["sample_name"]
+        )
 
     return all_rules
 
@@ -92,9 +113,21 @@ def get_trimmed_r1(wildcards):
 def get_trimmed_r2(wildcards):
     return "results/fastp_out/{sample}/{sample}.fastp.r2.fastq.gz"
 
-# spades assembly
+# spades assembly 
+
 def get_assembly(wildcards):
     return "results/spades_out/{sample}/scaffolds.fasta"
+
+# quast can take a whole list of assemblies to make an output
+def get_assembly_quast(wildcards):
+    assembly = expand(
+        "results/spades_out/{sample}/scaffolds.fasta",
+        sample=sample_sheet["sample_name"])
+    return assembly
+
+# trimmed assembly
+def get_assembly_trim(wildcards):
+    return "results/spades_parse/{sample}/{sample}.scaffolds.trim.fasta"
 
 # multiqc reports
 def get_fastqc_raw_multiqc(wildcards):
@@ -121,11 +154,4 @@ def get_fastqc_filt_multiqc(wildcards):
         sample=sample_sheet["sample_name"])
 
     return fastqc_reports
-
-
-def get_quast_multiqc(wildcards):
-    quast_reports = expand(
-       "results/quast_out/spades/{sample}/report.html", 
-        sample=sample_sheet["sample_name"])
-    return quast_reports
 

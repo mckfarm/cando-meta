@@ -13,10 +13,10 @@ default-resources:
   - account="p31629"
   - partition="normal"
   - nodes=1
-  - threads=12
-  - mem="200G"
-  - time="10:00:00"
-jobs: 10
+  - threads=1
+  - mem="20gb"
+  - time="05:00:00"
+jobs: 5
 restart-times: 0
 max-jobs-per-second: 15
 max-status-checks-per-second: 1

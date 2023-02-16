@@ -10,7 +10,7 @@ rule spades:
     threads: 25
     resources:
         mem="200g",
-        time="12:00:00"
+        time="20:00:00"
     shell:
         """
         module load python/3.8.4

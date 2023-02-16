@@ -1,11 +1,11 @@
 #! /bin/bash
 #SBATCH -A p31629
 #SBATCH --job-name="scheduler"
-#SBATCH -t 01:00:00
+#SBATCH -t 24:00:00
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p normal
-#SBATCH --mem=1gb
+#SBATCH --mem=500Mb
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=mckennafarmer2023@u.northwestern.edu
 #SBATCH --output="slurm.out"

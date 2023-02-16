@@ -14,6 +14,7 @@ include: "rules/fastqc.smk"
 include: "rules/nonpareil.smk"
 include: "rules/spades.smk"
 include: "rules/assembly_qc.smk"
+include: "rules/assembly_parse.smk"
 
 rule all:
     input:
