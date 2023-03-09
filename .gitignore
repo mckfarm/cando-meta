@@ -3,11 +3,11 @@ gaohan/raw_reads/*
 gaohan/results/*
 gaohan/local-working/*
 gaohan/.snakemake/*
+gaohan/resources/*
 
 # file types
 *.fastq.gz
 *.out
-
 
 # R stuff
 *.Rproj

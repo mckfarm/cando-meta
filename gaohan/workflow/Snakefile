@@ -15,6 +15,8 @@ include: "rules/nonpareil.smk"
 include: "rules/spades.smk"
 include: "rules/assembly_qc.smk"
 include: "rules/assembly_parse.smk"
+include: "rules/metabat.smk"
+include: "rules/taxonomy.smk"
 
 rule all:
     input:

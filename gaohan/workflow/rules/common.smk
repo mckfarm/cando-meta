@@ -68,11 +68,16 @@ def get_rules(wildcards):
             "results/spades_parse/{sample}/{sample}.scaffolds.trim.fasta",
             sample=sample_sheet["sample_name"]
         )
-
+        
         all_rules = all_rules + expand(
-            "results/spades_parse/{sample}/{sample}.mapped.sam",
+            "results/spades_parse/{sample}/{sample}_sorted.bam",
             sample=sample_sheet["sample_name"]
         )
+        
+        all_rules = all_rules + expand(
+            "results/spades_parse/{sample}/{sample}.sam",
+            sample=sample_sheet["sample_name"]
+        )        
 
         all_rules = all_rules + expand(
             "results/spades_parse/{sample}/{sample}.stats.txt",
@@ -84,8 +89,22 @@ def get_rules(wildcards):
             sample=sample_sheet["sample_name"]
         )
 
+    if config["METABAT"]:
+        metabat_results = directory(expand(
+            "results/metabat_out/{sample}/bins", 
+            sample=sample_sheet["sample_name"]))
+
+        all_rules = all_rules + metabat_results
+
+        checkm_results = directory(expand(
+            "results/checkm/{sample}", 
+            sample=sample_sheet["sample_name"])) 
+
+        all_rules = all_rules + checkm_results
+
+    if config["TAXONOMY"]: 
         all_rules = all_rules + expand(
-            "results/spades_parse/{sample}/{sample}.sorted.bam",
+            "results/taxonomy/metaphlan/{sample}/{sample}_profiled_metagenome.txt",
             sample=sample_sheet["sample_name"]
         )
 
@@ -113,21 +132,6 @@ def get_trimmed_r1(wildcards):
 def get_trimmed_r2(wildcards):
     return "results/fastp_out/{sample}/{sample}.fastp.r2.fastq.gz"
 
-# spades assembly 
-
-def get_assembly(wildcards):
-    return "results/spades_out/{sample}/scaffolds.fasta"
-
-# quast can take a whole list of assemblies to make an output
-def get_assembly_quast(wildcards):
-    assembly = expand(
-        "results/spades_out/{sample}/scaffolds.fasta",
-        sample=sample_sheet["sample_name"])
-    return assembly
-
-# trimmed assembly
-def get_assembly_trim(wildcards):
-    return "results/spades_parse/{sample}/{sample}.scaffolds.trim.fasta"
 
 # multiqc reports
 def get_fastqc_raw_multiqc(wildcards):
@@ -154,4 +158,28 @@ def get_fastqc_filt_multiqc(wildcards):
         sample=sample_sheet["sample_name"])
 
     return fastqc_reports
+
+
+# spades assembly 
+
+def get_assembly(wildcards):
+    return "results/spades_out/{sample}/scaffolds.fasta"
+
+
+# quast can take a whole list of assemblies to make an output
+def get_assembly_quast(wildcards):
+    assembly = expand(
+        "results/spades_out/{sample}/scaffolds.fasta",
+        sample=sample_sheet["sample_name"])
+    return assembly
+
+
+
+# assembly parsing calls
+
+def get_assembly_trim(wildcards):
+    return "results/spades_parse/{sample}/{sample}.scaffolds.trim.fasta"
+
+def get_sorted_bam(wildcards):
+    return "results/spades_parse/{sample}/{sample}_sorted.bam"
 
