@@ -8,8 +8,9 @@ sample_sheet: "config/sample_sheet.csv"
 FASTP: False
 FASTQC: False
 NONPAREIL: False
-SPADES: False
-ASSEMBLYQC: False
-ASSEMBLYPARSE: True
-METABAT: False
+ASSEMBLY: False
+ASSEMBLY_QC: False
+ASSEMBLY_PARSE: True
+BIN: False
+BIN_QC: True
 TAXONOMY: True

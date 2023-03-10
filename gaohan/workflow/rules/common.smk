@@ -54,16 +54,16 @@ def get_rules(wildcards):
             sample=sample_sheet["sample_name"]
         )
     
-    if config["SPADES"]:
+    if config["ASSEMBLY"]:
         all_rules = all_rules + expand(
             "results/spades_out/{sample}/scaffolds.fasta",
             sample=sample_sheet["sample_name"]
         )
 
-    if config["ASSEMBLYQC"]: 
+    if config["ASSEMBLY_QC"]: 
         all_rules.append("results/quast_out/spades/report.html")
 
-    if config["ASSEMBLYPARSE"]: 
+    if config["ASSEMBLY_PARSE"]: 
         all_rules = all_rules + expand(
             "results/spades_parse/{sample}/{sample}.scaffolds.trim.fasta",
             sample=sample_sheet["sample_name"]
@@ -89,7 +89,20 @@ def get_rules(wildcards):
             sample=sample_sheet["sample_name"]
         )
 
-    if config["METABAT"]:
+    if config["BIN"]:
+        metabat_results = directory(expand(
+            "results/metabat_out/{sample}/bins", 
+            sample=sample_sheet["sample_name"]))
+
+        all_rules = all_rules + metabat_results
+
+        checkm_results = directory(expand(
+            "results/checkm/{sample}", 
+            sample=sample_sheet["sample_name"])) 
+
+        all_rules = all_rules + checkm_results
+
+    if config["BIN_QC"]:
         metabat_results = directory(expand(
             "results/metabat_out/{sample}/bins", 
             sample=sample_sheet["sample_name"]))
@@ -105,8 +118,9 @@ def get_rules(wildcards):
     if config["TAXONOMY"]: 
         all_rules = all_rules + expand(
             "results/taxonomy/metaphlan/{sample}/{sample}_profiled_metagenome.txt",
-            sample=sample_sheet["sample_name"]
-        )
+            sample=sample_sheet["sample_name"])
+
+        all_rules.append("results/taxonomy/merged_metaphlan_profile.tsv")
 
     return all_rules
 

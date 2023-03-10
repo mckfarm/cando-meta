@@ -1,18 +1,34 @@
 rule metaphlan:
     input:
-        sam = "results/spades_parse/{sample}/{sample}.sam"
+        r1_clean = get_trimmed_r1,
+        r2_clean = get_trimmed_r2
     output:
-        depth_fi = "results/taxonomy/metaphlan/{sample}/{sample}_profiled_metagenome.txt"
-    conda:
-        "../envs/mmseqs.yaml"
+        table = "results/taxonomy/metaphlan/{sample}/{sample}_profiled_metagenome.txt",
+        bowtie = "results/taxonomy/metaphlan/{sample}/{sample}_bowtie2.bz2"
     threads: 5
     shell:
         """
         module load metaphlan/4.0.1
-        metaphlan {input.sam} \
-        --input_type sam -o profiled_metagenome.txt \
+        metaphlan {input.r1_clean},{input.r2_clean} \
+        --input_type fastq -o {output.table} --bowtie2out {output.bowtie} \
         --bowtie2db resources/metaphlan_db --index mpa_vOct22_CHOCOPhlAnSGB_202212 \
         --nproc {threads} 
+        """
+
+def metaphlan_merge_inputs(wildcards):
+    files = expand("results/taxonomy/metaphlan/{sample}/{sample}_profiled_metagenome.txt",
+        sample=sample_sheet["sample_name"])
+    return files
+
+rule metaphlan_merge:
+    input:
+        metaphlan_merge_inputs
+    output:
+        "results/taxonomy/merged_metaphlan_profile.tsv"
+    shell:
+        """
+        module load anaconda3/2022.05
+        scripts/merge_metaphlan_tables.py {input} > {output}
         """
 
 # rule mmseqs:

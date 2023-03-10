@@ -12,10 +12,11 @@ include: "rules/common.smk"
 include: "rules/fastp.smk"
 include: "rules/fastqc.smk"
 include: "rules/nonpareil.smk"
-include: "rules/spades.smk"
+include: "rules/assembly.smk"
 include: "rules/assembly_qc.smk"
 include: "rules/assembly_parse.smk"
-include: "rules/metabat.smk"
+include: "rules/bin.smk"
+include: "rules/bin_qc.smk"
 include: "rules/taxonomy.smk"
 
 rule all:
