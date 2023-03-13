@@ -5,7 +5,6 @@ import pandas as pd
 sample_sheet = pd.read_csv(config["sample_sheet"]).set_index("sample_name", drop=False)
 sample_sheet.index.names = ["sample_name"]
 
-
 # Parse config file to determine output for rule all 
 def get_rules(wildcards):
     all_rules = []
@@ -96,24 +95,23 @@ def get_rules(wildcards):
 
         all_rules = all_rules + metabat_results
 
-        checkm_results = directory(expand(
-            "results/checkm/{sample}", 
-            sample=sample_sheet["sample_name"])) 
-
-        all_rules = all_rules + checkm_results
-
     if config["BIN_QC"]:
-        metabat_results = directory(expand(
-            "results/metabat_out/{sample}/bins", 
-            sample=sample_sheet["sample_name"]))
-
-        all_rules = all_rules + metabat_results
 
         checkm_results = directory(expand(
             "results/checkm/{sample}", 
             sample=sample_sheet["sample_name"])) 
 
         all_rules = all_rules + checkm_results
+
+        bins_hq = directory(expand(
+            "results/bins_filtered/{sample}/hq", 
+            sample=sample_sheet["sample_name"])) 
+        
+        # bins_mq = directory(expand(
+        #     "results/bins_filtered/{sample}/mq", 
+        #     sample=sample_sheet["sample_name"])) 
+
+        all_rules = all_rules + bins_hq
 
     if config["TAXONOMY"]: 
         all_rules = all_rules + expand(
