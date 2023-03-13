@@ -1,11 +1,15 @@
 def checkm_filter(checkm, bins_all, bins_hq, bins_mq):
     """
     copy medium and high quality mags into a new folder for downstream use
-    high quality - >90% completeness, <5% contamination, 23S, 16S, 5S rRNA genes, >18 tRNAs
-    medium quality - >= 50% completeness, <10% contamination 
+    MIMAG standards
+        high quality - >90% completeness, <5% contamination, 23S, 16S, 5S rRNA genes, >18 tRNAs
+        medium quality - >= 50% completeness, <10% contamination 
 
-    inputs: 
-        checkm 
+    inputs (all require snakemake wildcards in rule call): 
+        checkm - directory where checkm outputs are stored 
+        bins_all - directory where bins are stored
+        bins_hq - where you want to store the high quality bins
+        bins_mq - where you want to store the medium quality bins
 
     outputs:
         directories with bins of medium and high quality copied
